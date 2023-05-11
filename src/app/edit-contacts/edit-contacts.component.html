@@ -1,0 +1,115 @@
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col">
+            <h1> <i class="fa-solid fa-user-pen fa-shake"></i>Update contact Page
+          </h1>
+            <!-- contents -->
+            <p style="text-align: justify;">
+                This is a dummy data: Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aspernatur molestiae necessitatibus assumenda, praesentium, rerum quaerat minima molestias laborum voluptas vitae porro deserunt ea dolores fuga! Nulla recusandae aspernatur dolorem minima!
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe sint qui asperiores voluptatum facere, expedita nobis deserunt quia, ducimus tempore temporibus illum ab, soluta quos necessitatibus odio eos ex blanditiis.
+            </p>
+            <!-- search option -->
+        </div>
+    </div>
+</div>
+<!-- edit contact design -->
+<div class="container mt-5">
+    <div class="row border rounded p-5">
+        <div class="col-md-8">
+
+<form #editContactForm="ngForm">
+    <!-- id -->
+    <div class="input-row">
+        <input name="id" #id="ngModel" [(ngModel)]="contact.id" placeholder="contact id" class="form-control mb-2" required>
+    </div>
+    <!-- id validation -->
+    <div *ngIf="id.invalid && id.touched" class="mb-2 text-danger">
+        please enter a valid id
+    </div>
+    <!-- name -->
+    <div class="input-row">
+        <input name="name" #name="ngModel" [(ngModel)]="contact.name" placeholder="contact name" class="form-control mb-2" type="text" pattern="[a-zA-Z ]*" required>
+    </div>
+    <!-- name validation -->
+    <div *ngIf="name.invalid && name.touched" class="mb-2 text-danger">
+        please enter a valid name
+     </div>
+     <!-- photo -->
+    <div class="input-row">
+        <input name="photo" #photo="ngModel" [(ngModel)]="contact.photo" placeholder="contact image URL" type="text"class="form-control mb-2" required>
+    </div>
+    <!-- photo validation -->
+    <div *ngIf="photo.invalid && photo.touched" class="mb-2 text-danger">
+        please enter a valid contact photo
+     </div>
+     <!-- mobile -->
+     <div class="input-row">
+        <input name="mobile" #mobile="ngModel" [(ngModel)]="contact.mobile" placeholder="contact mobile number"
+        pattern="[0-9]*" minlength="10" maxlength="10" class="form-control mb-2">
+    </div>
+    <!-- mobile validation -->
+    <div *ngIf="mobile.invalid && mobile.touched" class="mb-2 text-danger">
+        please enter a valid mobile number
+     </div>
+    <!-- email -->
+    <div class="input-row">
+        <input name="email" #email="ngModel" [(ngModel)]="contact.email" placeholder="contact Email id" class="form-control mb-2" required>
+    </div>
+    <!-- email validation -->
+    <div *ngIf="email.invalid && email.touched"class="mb-2 text-danger" >
+        please enter a valid email id
+    </div>
+    <!-- company -->
+    <div class="input-row">
+        <input name="company" #company="ngModel"[(ngModel)]="contact.company" placeholder="contact company name" class="form-control mb-2" required>
+    </div>
+    <!-- company validation -->
+    <div *ngIf="company.invalid && company.touched"class="mb-2 text-danger">
+        please enter a valid company name
+    </div>
+<!-- title -->
+    <div class="input-row">
+        <input name="title" #title="ngModel" [(ngModel)]="contact.title" placeholder="contact Title" class="form-control mb-2" required>
+    </div>
+    <!-- title validation -->
+    <div *ngIf="title.invalid && title.touched"class="mb-2 text-danger">
+        please enter a valid company title
+    </div>
+
+    <div class="input-row mb-2">
+        <select name="groupId" #groupId="ngModel" [(ngModel)]="contact.groupId" class="form-control" pattern="[0-9]*" required>
+            <option disabled selected hidden>choose a group</option>
+            <option *ngFor="let group of groups "[value]="group.id" >{{group.name}} </option>
+        </select>
+        <!-- group validation -->
+        <div *ngIf="groupId.invalid && groupId.touched"class="mb-2 text-danger">
+            please enter a valid group id
+        </div>
+
+     </div>
+     <div class="input-row d-flex justify-content-center mb-5">
+        <a routerLink="" class="btn btn-warning ms-2">Close</a>
+        <button  (click)="editContact(contact.id)" [disabled]="editContactForm.invalid" class="btn btn-success ms-2">update</button>
+    </div>
+</form>
+ </div>
+ <!-- contact card -->
+ <div class="col-md-4 d-flex justify-content-center">
+    <div class="card align-items-center p-2" style="width: 18rem;">
+        <img class="card-img-top text-center w-50" [src]="contact.photo" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{contact.name}}</h5>
+          <p>Id:{{contact.id}}</p>
+          <p>Mobile:{{contact.mobile}}</p>
+          <p>Email:{{contact.email}}</p>
+          <p>Company:{{contact.company}}</p>
+          <p>Title:{{contact.title}}</p>
+          <p>Group:{{contact.groupId}}</p>
+        </div>
+
+      </div>
+</div>
+   </div>
+ </div>
+
+
